@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ui_background_style1"
+    tools:context=".login.activity_mobile_signin"
+    tools:ignore="HardcodedText">
+    <!--android:background="#fff200"-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/mob_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ui_textbox_style1"
+            android:elevation="8dp"
+            android:ems="10"
+            android:hint="@string/country_code_your_mobile_number"
+            android:importantForAutofill="no"
+            android:inputType="phone"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textColorHint="@color/greyish"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/instruction2"
+            tools:targetApi="o" />
+
+        <TextView
+            android:id="@+id/instruction2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="monospace"
+            android:padding="8sp"
+            android:text="@string/enter_your_phone_number_to_sign_in"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/mobno_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ui_button_style2"
+            android:elevation="16dp"
+            android:padding="8dp"
+            android:text="@string/ok"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/instruction" />
+
+        <!--<EditText-->
+        <!--android:id="@+id/countrycode"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:background="#FFFFFF"-->
+        <!--android:elevation="8dp"-->
+        <!--android:hint="@string/enter_country_code"-->
+        <!--android:inputType="number"-->
+        <!--android:padding="8dp"-->
+        <!--android:textAlignment="center"-->
+        <!--android:textSize="18sp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/textView4"-->
+        <!--app:layout_constraintVertical_bias="0.100000024" />-->
+
+        <TextView
+            android:id="@+id/code_sent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:padding="6dp"
+            android:textColor="@color/blackLight"
+            app:layout_constraintBottom_toTopOf="@+id/code"
+            app:layout_constraintStart_toEndOf="@+id/mobno_submit"
+            app:layout_constraintTop_toBottomOf="@+id/instruction"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/show_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:padding="6dp"
+            android:textColor="@color/blackLight"
+            app:layout_constraintBottom_toTopOf="@+id/code"
+            app:layout_constraintEnd_toStartOf="@+id/coderesend"
+            app:layout_constraintTop_toBottomOf="@+id/instruction"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/instruction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:padding="3dp"
+            android:text='If Your Country Code Is "091" And Mobile Number Is "9876543210", Then Add Your Mobile Number As "+919876543210"'
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mob_no"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/coderesend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ui_button_style2"
+            android:elevation="16dp"
+            android:padding="8dp"
+            android:text="@string/resend_code"
+            android:textColor="@android:color/black"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/instruction" />
+
+        <EditText
+            android:id="@+id/code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ui_textbox_style1"
+            android:elevation="8dp"
+            android:ems="10"
+            android:hint="@string/enter_code"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/greyish"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mobno_submit"
+            tools:targetApi="o" />
+
+        <Button
+            android:id="@+id/submitcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/ui_button_style2"
+            android:elevation="16dp"
+            android:padding="8dp"
+            android:text="@string/submit"
+            android:textColor="@android:color/black"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/code"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/sign_out_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:padding="10dp"
+            android:text="sign out"
+            android:textSize="15sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

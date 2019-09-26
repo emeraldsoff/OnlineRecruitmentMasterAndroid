@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText,MissingDefaultResource">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_show"
+            android:checkable="false"
+            android:icon="@drawable/ic_people_24dp"
+            android:title="Show Contact Details" />
+        <item
+            android:id="@+id/menu_edit"
+            android:checkable="false"
+            android:icon="@drawable/ic_edit_black_24dp"
+            android:title="Edit"
+            app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/menu_call"
+            android:checkable="false"
+            android:icon="@drawable/ic_call_24dp"
+            android:title="Call" />
+        <item
+            android:id="@+id/menu_message"
+            android:checkable="false"
+            android:icon="@drawable/ic_message_24dp"
+            android:title="Message" />
+        <item
+            android:id="@+id/menu_delete"
+            android:checkable="false"
+            android:icon="@drawable/ic_delete_sweep"
+            android:title="Delete" />
+    </group>
+</menu>

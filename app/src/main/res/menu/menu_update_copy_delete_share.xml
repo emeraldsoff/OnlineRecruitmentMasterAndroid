@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText,MissingDefaultResource">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_update"
+            android:checkable="false"
+            android:icon="@drawable/ic_save_black_24dp"
+            android:title="Update"
+            app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/menu_copy"
+            android:checkable="false"
+            android:icon="@drawable/ic_content_copy_24dp"
+            android:title="Copy" />
+        <item
+            android:id="@+id/menu_delete"
+            android:checkable="false"
+            android:icon="@drawable/ic_delete_sweep"
+            android:title="Delete" />
+        <item
+            android:id="@+id/menu_share"
+            android:checkable="false"
+            android:icon="@drawable/round_share_24"
+            android:title="Share" />
+    </group>
+</menu>

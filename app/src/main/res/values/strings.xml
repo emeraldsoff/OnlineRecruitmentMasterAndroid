@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Online Recruitment Master</string>
+    <string name="app_name_full">Recruitment Master</string>
+    <string name="emeraldsoff">Emeraldsoff</string>
+
+    <string name="signup_login">OR</string>
+    <string name="signup">LogIn/SignUp</string>
+    <string name="login">LogIn</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="submit">SUBMIT</string>
+
+    <string name="enter_10_digit_mobile_number">Enter 10 Digit Mobile Number</string>
+    <string name="sign_in_using_mobile_number">Sign in Using Mobile Number</string>
+    <string name="signup_login_using_google_facebook">null</string>
+    <string name="enter_code">Enter Code</string>
+    <string name="resend_code">Resend Code</string>
+    <!--<string name="other_signin">Sign in Using >></string>-->
+    <string name="other_signin">Sign in Using Mobile Number</string>
+    <string name="country_code_your_mobile_number">Country Code+Your Mobile Number</string>
+    <string name="instruction1">If Your Country Code Is "091" Then Add Your Phone Number As "+91" Followed By Your Mobile Number</string>
+    <string name="instant_validation">Instant Validated</string>
+    <string name="enter_your_phone_number_to_sign_in">Enter Your Phone Number To Sign In</string>
+
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="app_security">App Security</string>
+    <string name="enter_pin">ENTER NEW PIN</string>
+
+    <string name="enter1_pin">ENTER PIN</string>
+    <string name="push_notification">no new message</string>
+
+    <string name="about_us">
+        Welcome to Mega Prospect.\n\n
+        <!--<MegaProspects><b> -->
+        https://play.google.com/store/apps/details?id=inc.emeraldsoff.megaprospectsnext
+        <!--</b></MegaProspects>-->
+        \n\n
+        Mega-prospect presents an app to organizing all the data of your clients on your fingertips: smarter life in one swipe. No hassle, difficulties and worries.
+
+\nMega-prospect promises you to give a better manageable and organized way of putting important data of clients.
+\n\n
+Features
+\n>Smartest technology for organizing data.
+\n>Helps to create an effective customer relationship management.
+\n>App works in both online and offline mode.
+\n>Very little consumption on internet data.
+\n>Direct calling and messaging the client from the app.
+\n>Note adding facility is available.
+    </string>
+</resources>

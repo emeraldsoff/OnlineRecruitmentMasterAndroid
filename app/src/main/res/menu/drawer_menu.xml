@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText,MissingDefaultResource"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/gopro"
+            android:icon="@drawable/round_whatshot_yellow_24dp"
+            android:title="Go Premium" />
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/round_home_24"
+            android:title="Home" />
+    </group>
+    <item
+        android:title="Contact Manager"
+        app:showAsAction="collapseActionView">
+        <menu>
+            <group android:checkableBehavior="single">
+                <!--<item-->
+                <!--android:id="@+id/addpeople"-->
+                <!--android:icon="@drawable/round_person_add_24"-->
+                <!--android:title="Add People" />-->
+                <item
+                    android:id="@+id/searchpeople"
+                    android:icon="@drawable/ic_people_24dp"
+                    android:title="Search People" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="Policy and Insurance Details"
+        android:visible="false">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/policy_insurance"
+                    android:icon="@drawable/ic_policies_24dp"
+                    android:title="Policy Manager" />
+
+            </group>
+        </menu>
+    </item>
+    <item android:title="Notes and Appointments">
+        <menu>
+            <group android:checkableBehavior="single">
+                <!--<item android:title="Add New Page"-->
+                <!--android:id="@+id/diary_page"-->
+                <!--android:icon="@drawable/ic_diary_add_24dp"/>-->
+                <item
+                    android:id="@+id/diary_content"
+                    android:icon="@drawable/ic_book_24dp"
+                    android:title="Personal Diary" />
+
+            </group>
+        </menu>
+    </item>
+    <item android:title="Extras">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/settings"
+                    android:icon="@drawable/round_settings_24"
+                    android:title="Settings" />
+                <item
+                    android:id="@+id/share"
+                    android:icon="@drawable/round_share_24"
+                    android:title="Share" />
+                <item
+                    android:id="@+id/aboutus"
+                    android:icon="@drawable/round_info_24"
+                    android:title="About Us" />
+            </group>
+        </menu>
+    </item>
+    <!--<item android:title="Setting">-->
+    <!--<menu>-->
+    <!--<item android:id="@+id/setting"-->
+    <!--android:icon="@drawable/round_settings_24"-->
+    <!--android:title="Settings"/>-->
+    <!--<item android:id="@+id/share"-->
+    <!--android:icon="@drawable/round_share_24"-->
+    <!--android:title="Share"/>-->
+    <!--<item android:id="@+id/aboutus"-->
+    <!--android:icon="@drawable/round_info_24"-->
+    <!--android:title="About Us"/>-->
+    <!--</menu>-->
+    <!--</item>-->
+</menu>

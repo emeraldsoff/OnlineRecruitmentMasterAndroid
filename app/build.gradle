@@ -1,0 +1,130 @@
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+apply plugin: 'com.google.firebase.firebase-perf'
+
+android {
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
+    dexOptions {
+        javaMaxHeapSize "12g"
+    }
+
+    def date = new Date()
+    def formattedDate = date.format('yyMMddHHmm')
+    compileSdkVersion 29
+    buildToolsVersion "29.0.1"
+    defaultConfig {
+        applicationId "inc.emeraldsoff.onlinerecruitmentmaster"
+        minSdkVersion 22
+        targetSdkVersion 29
+        versionCode 1
+        versionName "Recruitment Master V1.0"+formattedDate
+        setProperty("archivesBaseName",versionCode + "-" + versionName)
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+def appCenterSdkVersion = '1.11.0'
+dependencies {
+    //noinspection GradleCompatible
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
+    implementation 'androidx.palette:palette:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0-alpha10'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+
+    implementation 'com.anjlab.android.iab.v3:library:1.1.0'   //INAPP PAYMENT LIBRARY
+
+    //FIREBASE LIBRARIES FOR UI
+    implementation 'com.firebaseui:firebase-ui-database:4.3.0'  // FirebaseUI for Firebase Realtime Database
+    implementation 'com.firebaseui:firebase-ui-firestore:4.3.0' // FirebaseUI for Cloud Firestore
+    implementation 'com.firebaseui:firebase-ui-auth:4.3.0'  // FirebaseUI for Firebase Auth
+    implementation 'com.firebaseui:firebase-ui-storage:4.3.0'   // FirebaseUI for Cloud Storage
+
+    //FIREBASE LIBRARIES
+    implementation 'com.google.firebase:firebase-core:17.0.1'   //FireBase Core connector
+    implementation 'com.google.firebase:firebase-auth:18.1.0'   //Firebase Api for Firebase Auth
+    implementation 'com.google.firebase:firebase-firestore:20.2.0'   //Firebase Api for Cloud Firestore
+    implementation 'com.google.firebase:firebase-database:18.0.1'   //Firebase Api for Firebase Realtime Database
+    implementation 'com.google.firebase:firebase-storage:18.1.1'   //Firebase Api for Cloud Storage
+    implementation 'com.google.firebase:firebase-crash:16.2.1'  //FireBase Crash Report
+    implementation 'com.google.firebase:firebase-messaging:19.0.1'  //firebase messaging
+    implementation 'com.google.firebase:firebase-perf:18.0.1' //firebase performance
+
+    //Firebase Crashlytics
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'  //FIREBASE CRASHLYTICS
+
+    //google drive rest api
+    // implementation 'com.google.api-client:google-api-client:1.25.0'
+    //implementation 'com.google.apis:google-api-services-drive:v3-rev162-1.25.0'
+
+//API MANAGER
+    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    
+    // implementation 'com.google.android.gms:play-services-auth:16.0.1'    //Google Drive Auth
+    // implementation 'com.google.android.gms:play-services-drive:16.1.0'  //Google Drive Api
+
+//    implementation 'com.google.firebase:firebase-inappmessaging-display:17.0.0' // Add the In-App Messaging depencency
+
+    //CUSTOM LIBRARIES
+    implementation 'com.github.GrenderG:Toasty:1.4.2'   //custom toast
+    implementation 'com.andrognito.pinlockview:pinlockview:2.1.0'   // pin authentication view
+    implementation 'org.jsoup:jsoup:1.12.1' // JSOUP Library
+    implementation 'com.android.volley:volley:1.1.1'    // VOLLEY
+    implementation 'com.github.emeraldsoff:AwesomeDialog:2.0.7'    //AwesomeDialog
+    implementation 'pub.devrel:easypermissions:1.3.0' //Permission Request Api
+//    implementation 'com.bingzer.android.driven:driven:1.0.0' //Universal Storage Api
+
+    //AppCenter dependencies
+    implementation "com.microsoft.appcenter:appcenter-push:${appCenterSdkVersion}"
+    implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
+    implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
+    implementation "com.microsoft.appcenter:appcenter-distribute:${appCenterSdkVersion}"
+
+    //implementation group
+    //implementation group: 'net.lingala.zip4j', name: 'zip4j', version: '1.3.2'//Sqlite Encryption dependency
+    implementation group: 'com.google.apis', name: 'google-api-services-drive', version: 'v3-rev162-1.25.0'
+    implementation 'com.github.emeraldsoff:zip4jandroid:1.0.1'
+    //Sqlite Encryption dependency
+
+    //JARS
+    //implementation files('src/main/java/inc/emeraldsoff/megaprospectsnext/jars/zip_encryptor.jar')  //Sqlite Encryption dependency
+    //implementation files('src/main/java/inc/emeraldsoff/megaprospectsnext/jars/google_api_services_drive.jar')  //google drive rest api
+}
+
+
+
+apply plugin: 'com.google.gms.google-services'
+repositories {
+    mavenCentral()
+}
+

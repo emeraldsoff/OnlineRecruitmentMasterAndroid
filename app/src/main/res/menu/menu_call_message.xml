@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText,MissingDefaultResource">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_call"
+            android:checkable="false"
+            android:icon="@drawable/ic_call_24dp"
+            android:title="Call" />
+        <item
+            android:id="@+id/menu_message"
+            android:checkable="false"
+            android:icon="@drawable/ic_message_24dp"
+            android:title="Message" />
+    </group>
+</menu>

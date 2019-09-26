@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "266213082748",
+    "firebase_url": "https://online-recruitment-master.firebaseio.com",
+    "project_id": "online-recruitment-master",
+    "storage_bucket": "online-recruitment-master.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266213082748:android:55e1e7a4f1582686",
+        "android_client_info": {
+          "package_name": "inc.emeraldsoff.onlinerecruitmentmaster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "266213082748-om0e4ukep24vjmd85rvij6qoj86aqo2i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "inc.emeraldsoff.onlinerecruitmentmaster",
+            "certificate_hash": "51804494342ec9bccab9b046da270be128c3f581"
+          }
+        },
+        {
+          "client_id": "266213082748-7ebbjlrilfspmpqhll2q52ddsh9ksgpr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfu_uAI6A7IoXJ5AQBvmhl5-kuHQty-W8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "266213082748-7ebbjlrilfspmpqhll2q52ddsh9ksgpr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
