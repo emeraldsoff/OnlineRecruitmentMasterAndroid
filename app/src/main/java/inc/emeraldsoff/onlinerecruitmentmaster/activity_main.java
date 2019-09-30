@@ -49,11 +49,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import es.dmoral.toasty.Toasty;
-import inc.emeraldsoff.onlinerecruitmentmaster.appcontrol_ui.activity_aboutus;
 import inc.emeraldsoff.onlinerecruitmentmaster.appcontrol_ui.activity_settings;
 import inc.emeraldsoff.onlinerecruitmentmaster.billing_ui.activity_gopro;
-import inc.emeraldsoff.onlinerecruitmentmaster.remote_local_helpers.distributor_ms;
-import inc.emeraldsoff.onlinerecruitmentmaster.remote_local_helpers.pushlistener_ms;
 import inc.emeraldsoff.onlinerecruitmentmaster.ui_data.diary.activity_diary;
 import inc.emeraldsoff.onlinerecruitmentmaster.ui_data.fragment_Home.activity_home;
 import inc.emeraldsoff.onlinerecruitmentmaster.ui_data.people.activity_searchpeople;
@@ -65,100 +62,30 @@ import static inc.emeraldsoff.onlinerecruitmentmaster.Constants.DATABASE_INTERNA
 //import static com.crashlytics.android.Crashlytics.TAG;
 
 public class activity_main extends AppCompatActivity {
-    //    SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.US);
-//    SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.US);
-//    SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.US);
-//    SimpleDateFormat day_monFormat = new SimpleDateFormat("dd-MM", Locale.US);
     @SuppressLint("SimpleDateFormat")
     private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     NavigationView navigationView;
     androidx.appcompat.widget.Toolbar toolbar;
     ActionBarDrawerToggle toggle;
     TextView user, phn, email, validinfo;
-    //    SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd", Locale.US);
-//    SimpleDateFormat hh_mm_ss = new SimpleDateFormat("hh:mm:ss", Locale.US);
-    //    Date futuredate = null;
-//    Date currentdate = null;
     SimpleDateFormat fullFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
     private DrawerLayout drawer;
     private Context mcontext;
     private SharedPreferences mpref;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
-//    private FirebaseFirestore fdb = FirebaseFirestore.getInstance();
-//    private final long ONE_DAY = 24 * 60 * 60 * 1000;
-//    Date now = new Date();
-//    String dateString = formatter.format(now);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        analytics();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mcontext = this;
     }
 
-//    public void analytics(){
-////        mpref=getSharedPreferences("User",MODE_PRIVATE);
-//        AppCenter.setEnabled(true);
-//        AppCenter.getSdkVersion();
-//        AppCenter.getInstallId();
-//        AppCenter.setUserId(mpref.getString("userID",""));
-//        String activity = mcontext.getClass().getSimpleName();
-////        Push.setListener(new pushlistener_ms());
-//        AppCenter.start(getApplication(), "bbcf040f-8803-43ba-b9d5-878adb5e4ea6",
-//                Analytics.class, Crashes.class);
-////        Crashes.notifyUserConfirmation(MY_MS_CRASH_PERMISSION);
-////        Crashes.getLastSessionCrashReport();
-////        Push.enableFirebaseAnalytics(mcontext);
-////        Analytics.trackEvent(activity+"");
-////        AppCenter.start(getApplication(), "bbcf040f-8803-43ba-b9d5-878adb5e4ea6", );
-//
-//
-//        //For Firebase
-//        FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-//        Trace myTrace = FirebasePerformance.getInstance().newTrace(activity+"");
-//        myTrace.start();
-//    }
-
-    public void analytics() {
-        String uid = mAuth.getUid();
-        String activity = this.getClass().getSimpleName();
-        FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        Push.enableFirebaseAnalytics(getApplication());
-        AppCenter.start(getApplication(), "bbcf040f-8803-43ba-b9d5-878adb5e4ea6",
-                Distribute.class, Push.class, Analytics.class, Crashes.class);
-        AppCenter.setEnabled(true);
-//        AppCenter.getSdkVersion();
-        AppCenter.getInstallId();
-        AppCenter.setUserId(uid);
-        mFirebaseAnalytics.setUserId(uid + "");
-        Crashes.getLastSessionCrashReport();
-        Push.enableFirebaseAnalytics(mcontext);
-        Distribute.setListener(new distributor_ms());
-        Push.setListener(new pushlistener_ms());
-        Analytics.trackEvent(activity + "");
-    }
-
-    public void trace(Trace trace) {
-        String uid = mAuth.getUid();
-        String activity = this.getClass().getSimpleName();
-        trace = FirebasePerformance.getInstance().newTrace(uid + "-" + activity + "");
-        trace.start();
-    }
-
     public void menucreate() {
-//        AppCenter.start(getApplication(), appsecret, );
-//        AppCenter.start(getApplication(), appsecret, Push.class, Analytics.class, Crashes.class);
         toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-//        View nav_header = navigationView.getHeaderView(0);
-//        user = nav_header.findViewById(R.id.user);
-//        phn = nav_header.findViewById(R.id.user_phn);
-//        email = nav_header.findViewById(R.id.user_email);
-//        validinfo = nav_header.findViewById(R.id.validinfo);
-//        navigationView.setNavigationItemSelectedListener(this);
 
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -168,41 +95,23 @@ public class activity_main extends AppCompatActivity {
 
         getactivityname();
         userdatafetch();
-//        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Harlow.ttf");
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home:
+                    case R.id.aboutus:
+                    case R.id.policy_insurance:
                         startActivity(new Intent(mcontext, activity_home.class));
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .setCustomAnimations(R.anim.fui_slide_in_right, R.anim.fui_slide_out_left)
-//                        .replace(R.id.fragment_container, new fragment_home())
-//                        .addToBackStack(null)
-//                        .commit();
-//                navigationView.setCheckedItem(R.id.home);
                         break;
-//                    case R.id.addpeople:
-//                        startActivity(new Intent(mcontext, activity_addpeople.class));
-//                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//                        break;
                     case R.id.searchpeople:
                         startActivity(new Intent(mcontext, activity_searchpeople.class));
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         break;
-                    case R.id.policy_insurance:
-//                        startActivity(new Intent(mcontext, activity_addpeople.class));
-//                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                        break;
                     case R.id.settings:
                         startActivity(new Intent(mcontext, activity_settings.class));
-                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                        break;
-                    case R.id.aboutus:
-                        startActivity(new Intent(mcontext, activity_aboutus.class));
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         break;
                     case R.id.gopro:
@@ -237,154 +146,37 @@ public class activity_main extends AppCompatActivity {
         toggle.syncState();
     }
 
-//    @Override
-//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.home:
-//                startActivity(new Intent(mcontext, Main2Activity.class));
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .setCustomAnimations(R.anim.fui_slide_in_right, R.anim.fui_slide_out_left)
-//                        .replace(R.id.fragment_container, new fragment_home())
-//                        .addToBackStack(null)
-//                        .commit();
-//                navigationView.setCheckedItem(R.id.home);
-//                break;
-//            case R.id.addpeople:
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .setCustomAnimations(R.anim.fui_slide_in_right, R.anim.fui_slide_out_left)
-//                        .replace(R.id.fragment_container, new fragment_addpeople())
-//                        .addToBackStack(null)
-//                        .commit();
-////                navigationView.setCheckedItem(R.id.addpeople);
-//                break;
-//            case R.id.searchpeople:
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .setCustomAnimations(R.anim.fui_slide_in_right, R.anim.fui_slide_out_left)
-//                        .replace(R.id.fragment_container, new fragment_searchpeople())
-//                        .addToBackStack(null)
-//                        .commit();
-////                navigationView.setCheckedItem(R.id.searchpeople);
-//                break;
-//            case R.id.settings:
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .setCustomAnimations(R.anim.fui_slide_in_right, R.anim.fui_slide_out_left)
-//                        .replace(R.id.fragment_container, new fragment_settings())
-//                        .addToBackStack(null)
-//                        .commit();
-////                navigationView.setCheckedItem(R.id.settings);
-//                break;
-//            case R.id.aboutus:
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .setCustomAnimations(R.anim.fui_slide_in_right, R.anim.fui_slide_out_left)
-//                        .replace(R.id.fragment_container, new fragment_aboutus())
-//                        .addToBackStack(null)
-//                        .commit();
-////                navigationView.setCheckedItem(R.id.aboutus);
-//                break;
-//            case R.id.gopro:
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .setCustomAnimations(R.anim.fui_slide_in_right, R.anim.fui_slide_out_left)
-//                        .replace(R.id.fragment_container, new fragment_gopro())
-//                        .addToBackStack(null)
-//                        .commit();
-////                navigationView.setCheckedItem(R.id.gopro);
-//                break;
-//            case R.id.share:
-//                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-//                shareIntent.setType("text/plain");
-//                shareIntent.putExtra(Intent.EXTRA_TEXT, "Use EmeraldSoff Mega Prospects Pro" +
-//                        " to increase interaction with your friends, families and clients. " +
-//                        "Click on https://play.google.com/store/apps/details?id=inc.emeraldsoff.onlinerecruitmentmaster" +
-//                        "to download the app");
-//                shareIntent.putExtra(Intent.EXTRA_TITLE, "EmeraldSoff Mega Prospects Pro");
-//                startActivity(Intent.createChooser(shareIntent, "Share Mega Prospects Pro"));
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .setCustomAnimations(R.anim.fui_slide_in_right, R.anim.fui_slide_out_left)
-//                        .commit();
-////                Toasty.success(mcontext, "Message Shared..!!", 4).show();
-//                break;
-//        }
-//        drawer.closeDrawer(GravityCompat.START, true);
-//        return false;
-//    }
-
-
-//    public void onBackPress() {
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//        } else {
-////            return onBackPressedListener.onBackPressed();
-//            super.onBackPressed();
-////            finish();
-//        }
-//    }
-
-
     public void getactivityname() {
         String activityname = this.getClass().getSimpleName();
         switch (activityname) {
             case "activity_home":
                 navigationView.setCheckedItem(R.id.home);
-//                toolbar.setTitle(Objects.requireNonNull(navigationView.getCheckedItem()).getTitle());
                 toolbar.setTitle("Home");
                 break;
             case "activity_addpeople":
                 navigationView.setCheckedItem(R.id.addpeople);
-//                toolbar.setTitle(Objects.requireNonNull(navigationView.getCheckedItem()).getTitle());
                 toolbar.setTitle("Add People");
                 break;
             case "activity_searchpeople":
                 navigationView.setCheckedItem(R.id.searchpeople);
-//                toolbar.setTitle(Objects.requireNonNull(navigationView.getCheckedItem()).getTitle());
                 toolbar.setTitle("Search People");
-                break;
-            case "activity_aboutus":
-                navigationView.setCheckedItem(R.id.aboutus);
-//                toolbar.setTitle(Objects.requireNonNull(navigationView.getCheckedItem()).getTitle());
-                toolbar.setTitle("About Us");
                 break;
             case "activity_settings":
                 navigationView.setCheckedItem(R.id.settings);
-//                toolbar.setTitle(Objects.requireNonNull(navigationView.getCheckedItem()).getTitle());
                 toolbar.setTitle("Settings");
                 break;
             case "activity_gopro":
                 navigationView.setCheckedItem(R.id.gopro);
-//                toolbar.setTitle(Objects.requireNonNull(navigationView.getCheckedItem()).getTitle());
                 toolbar.setTitle("Go Premium");
                 break;
             case "activity_diary":
                 navigationView.setCheckedItem(R.id.diary_content);
-//                toolbar.setTitle(Objects.requireNonNull(navigationView.getCheckedItem()).getTitle());
                 toolbar.setTitle("Personal Diary");
                 break;
             case "activity_add_diary_content":
                 toolbar.setTitle("New Diary Document");
                 break;
         }
-//        else if(activityname.equals("activity_editpeople"))
-//        {
-//            toolbar.setTitle("Person");
-//        }
-//        else if(activityname.equals("activity_showpeopledetails"))
-//        {
-//            toolbar.setTitle("");
-//        }
-//        else if(activityname.equals("activity_"))
-//        {
-//            toolbar.setTitle("");
-//        }
-//        else
-//        {
-//            navigationView.
-//        }
     }
 
     @SuppressLint("SetTextI18n")

@@ -121,8 +121,6 @@ public class activity_settings extends activity_main {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.analytics();
-        super.trace(trace);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         mcontext = this;
@@ -259,13 +257,7 @@ public class activity_settings extends activity_main {
                 pinreset.setVisibility(View.GONE);
                 pinremove.setVisibility(View.GONE);
             }
-            pinreset.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mcontext, activity_pin.class);
-                    startActivity(intent);
-                }
-            });
+
 
             pinremove.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -280,36 +272,6 @@ public class activity_settings extends activity_main {
                     pinremove.setVisibility(View.GONE);
                 }
             });
-
-
-            lockswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        if (Objects.requireNonNull(mpref.getString("PIN", "")).equals("") ||
-                                Objects.requireNonNull(mpref.getString("PIN", "")).isEmpty()) {
-                            Intent intent = new Intent(mcontext, activity_pin.class);
-                            startActivity(intent);
-                        } else {
-                            SharedPreferences.Editor editor = mpref.edit();
-                            editor.putBoolean("IF_SECURE", true);
-                            editor.apply();
-                            pinreset.setVisibility(View.VISIBLE);
-                            pinremove.setVisibility(View.VISIBLE);
-//                        Toast.makeText(this,"App State: "+mpref.getBoolean("IF_SECURE",false),Toast.LENGTH_LONG).show();
-                            Toasty.success(mcontext, "App is now secure...",
-                                    Toast.LENGTH_LONG, false).show();
-                        }
-                    } else {
-                        SharedPreferences.Editor editor = mpref.edit();
-                        editor.putBoolean("IF_SECURE", false);
-                        editor.apply();
-                        pinset();
-                        pinreset.setVisibility(View.GONE);
-                        pinremove.setVisibility(View.GONE);
-                    }
-                }
-            });
         } catch (Exception e) {
             Toasty.error(mcontext, "Something went wrong..!!",
                     Toast.LENGTH_LONG, false).show();
@@ -318,16 +280,9 @@ public class activity_settings extends activity_main {
 
 
     private void pinset() {
-//        boolean b=mpref.getBoolean("IF_SECURE",false);
-//        Toast.makeText(this,"App State"+mpref.getBoolean("IF_SECURE",false),Toast.LENGTH_LONG).show();
         if (!mpref.getBoolean("IF_SECURE", true)) {
             Toasty.error(this, "App Is Not Secure..!!",
                     Toast.LENGTH_LONG, false).show();
-//            Toasty.error(this, "App State: " + mpref.getBoolean("IF_SECURE", false),
-//                    Toast.LENGTH_LONG,false).show();
-//            Toast.makeText(this,"App Security Has Been Turned Off",Toast.LENGTH_LONG).show();
-//            StyleableToast.makeText(this,"App Security Has Been Turned Off...!!!",
-//                    Toast.LENGTH_LONG, R.style.notification).show();
         }
     }
 
@@ -355,15 +310,6 @@ public class activity_settings extends activity_main {
             pinreset.setVisibility(View.GONE);
             pinremove.setVisibility(View.GONE);
         }
-//        if(mpref.getBoolean("admin_access",true))
-//        {
-//            admin_access1.setChecked(true);
-//        }
-//        else
-//        {
-//            admin_access1.setChecked(false);
-//        }
-//        act_ads();
     }
 
     @Override

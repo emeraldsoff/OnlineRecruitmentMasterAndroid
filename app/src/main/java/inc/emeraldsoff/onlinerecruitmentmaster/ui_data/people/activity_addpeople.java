@@ -87,8 +87,6 @@ public class activity_addpeople extends activity_main {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.analytics();
-        super.trace(trace);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addpeople);
         mcontext = this;

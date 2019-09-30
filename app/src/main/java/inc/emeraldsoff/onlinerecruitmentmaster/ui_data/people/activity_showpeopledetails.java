@@ -46,8 +46,6 @@ public class activity_showpeopledetails extends activity_main {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.analytics();
-        super.trace(trace);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_showpeopledetails);
         mcontext = this;

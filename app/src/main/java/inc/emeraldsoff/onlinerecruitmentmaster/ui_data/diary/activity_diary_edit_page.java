@@ -75,8 +75,7 @@ public class activity_diary_edit_page extends activity_main {
     private boolean datachanged = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.analytics();
-        super.trace(trace);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary_add_edit_page);
         mcontext = this;

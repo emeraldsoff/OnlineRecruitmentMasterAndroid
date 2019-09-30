@@ -42,6 +42,7 @@ android {
     }
 }
 
+
 def appCenterSdkVersion = '1.11.0'
 dependencies {
     //noinspection GradleCompatible
@@ -70,7 +71,7 @@ dependencies {
     //FIREBASE LIBRARIES
     implementation 'com.google.firebase:firebase-core:17.0.1'   //FireBase Core connector
     implementation 'com.google.firebase:firebase-auth:18.1.0'   //Firebase Api for Firebase Auth
-    implementation 'com.google.firebase:firebase-firestore:20.2.0'   //Firebase Api for Cloud Firestore
+    implementation 'com.google.firebase:firebase-firestore:21.1.1'   //Firebase Api for Cloud Firestore
     implementation 'com.google.firebase:firebase-database:18.0.1'   //Firebase Api for Firebase Realtime Database
     implementation 'com.google.firebase:firebase-storage:18.1.1'   //Firebase Api for Cloud Storage
     implementation 'com.google.firebase:firebase-crash:16.2.1'  //FireBase Crash Report
@@ -85,8 +86,9 @@ dependencies {
     //implementation 'com.google.apis:google-api-services-drive:v3-rev162-1.25.0'
 
 //API MANAGER
-    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
     implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     

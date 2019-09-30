@@ -147,10 +147,7 @@
         <activity android:name=".ui_data.people.activity_editpeople" />
         <activity android:name=".ui_data.people.activity_searchpeople" />
         <activity android:name=".ui_data.people.activity_showpeopledetails" />
-        <activity android:name=".appcontrol_ui.activity_aboutus" />
         <activity android:name=".appcontrol_ui.activity_settings" />
-        <activity android:name=".appcontrol_ui.activity_pin" />
-        <activity android:name=".appcontrol_ui.activity_entry" />
         <activity android:name=".ui_data.fragment_Home.activity_home" />
         <activity android:name=".ui_data.diary.activity_diary" />
         <activity android:name=".ui_data.diary.activity_diary_show_page" />

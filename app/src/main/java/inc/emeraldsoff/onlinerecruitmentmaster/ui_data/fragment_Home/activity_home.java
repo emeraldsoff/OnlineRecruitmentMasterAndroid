@@ -82,8 +82,6 @@ public class activity_home extends activity_main implements View.OnClickListener
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.analytics();
-        trace_home();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         mcontext = this;
@@ -108,12 +106,7 @@ public class activity_home extends activity_main implements View.OnClickListener
         }
     }
 
-    public void trace_home() {
-        String uid = mAuth.getUid();
-        String activity = this.getClass().getSimpleName();
-        trace = FirebasePerformance.getInstance().newTrace(uid + "-" + activity + "");
-        trace.start();
-    }
+
 
     @Override
     public void setFinishOnTouchOutside(boolean finish) {

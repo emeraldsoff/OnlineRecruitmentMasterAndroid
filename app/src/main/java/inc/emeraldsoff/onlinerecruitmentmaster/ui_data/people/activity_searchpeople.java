@@ -1,18 +1,17 @@
 package inc.emeraldsoff.onlinerecruitmentmaster.ui_data.people;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.perf.metrics.Trace;
@@ -21,13 +20,21 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+
 import inc.emeraldsoff.onlinerecruitmentmaster.R;
 import inc.emeraldsoff.onlinerecruitmentmaster.activity_main;
+import inc.emeraldsoff.onlinerecruitmentmaster.retrofit_helper.interfaces.GetDataService;
+import inc.emeraldsoff.onlinerecruitmentmaster.retrofit_helper.instances.RetrofitClientInstance_localhost;
+import inc.emeraldsoff.onlinerecruitmentmaster.retrofit_helper.adapter.employeeAdapter;
+import inc.emeraldsoff.onlinerecruitmentmaster.retrofit_helper.model.employee_model;
 import inc.emeraldsoff.onlinerecruitmentmaster.sqlite_manager.sqlite_adapters.contact_manager.contact_adapter;
-import inc.emeraldsoff.onlinerecruitmentmaster.sqlite_manager.sqlite_basecolumns;
-import inc.emeraldsoff.onlinerecruitmentmaster.sqlite_manager.sqlite_helper;
 import inc.emeraldsoff.onlinerecruitmentmaster.ui_data.diary.activity_diary_add_page;
 import inc.emeraldsoff.onlinerecruitmentmaster.ui_data.fragment_Home.activity_home;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static inc.emeraldsoff.onlinerecruitmentmaster.Constants.MY_PERMISSIONS_CALL_PHONE;
 
@@ -37,8 +44,6 @@ public class activity_searchpeople extends activity_main {
             .setPersistenceEnabled(true)
             .build();
 
-    SQLiteDatabase sqlite;
-    sqlite_helper sqliteHelper;
     SharedPreferences mpref;
     SearchView search;
     RecyclerView id_recycleview;
@@ -50,6 +55,8 @@ public class activity_searchpeople extends activity_main {
     private Context mcontext;
     private contact_adapter adapter;
     Trace trace;
+    private employeeAdapter adapter1;
+    ProgressDialog progressDoalog;
 
     @Override
     protected void onStart() {
@@ -66,8 +73,6 @@ public class activity_searchpeople extends activity_main {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.analytics();
-        super.trace(trace);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchpeople);
         super.menucreate();
@@ -75,101 +80,68 @@ public class activity_searchpeople extends activity_main {
         mcontext = this;
         setupitems();
         fab_action();
-        setup_db();
-//        searchaction_firebase();
-        searchaction_sqlite();
-//        db_recyclerview();
-
-    }
-
-    private void setup_db() {
-        sqliteHelper = new sqlite_helper(mcontext);
-        sqlite = sqliteHelper.getWritableDatabase();
-    }
-
-    private void db_recyclerview() {
-        id_recycleview = findViewById(R.id.id_recycle_view);
-        id_recycleview.setHasFixedSize(true);
-        id_recycleview.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new contact_adapter(this, getallitems());
-        id_recycleview.setAdapter(adapter);
-        String x;
-        if (getallitems().getCount() == 0) {
-            x = "Found No Contact.";
-        } else if (getallitems().getCount() == 1) {
-            x = "Found Only " + getallitems().getCount() + " Contact.";
-        } else {
-            x = "Found " + getallitems().getCount() + " Contacts.";
-        }
-        Snackbar.make(id_recycleview, x, 3000).show();
-    }
-
-    private void db_recyclerview_query(String q) {
-        id_recycleview = findViewById(R.id.id_recycle_view);
-        id_recycleview.setHasFixedSize(true);
-        id_recycleview.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new contact_adapter(this, get_search_item(q));
-        id_recycleview.setAdapter(adapter);
-        String x;
-        if (get_search_item(q).getCount() == 0) {
-            x = "Found No Contact With '" + q + "' In It.";
-        } else if (get_search_item(q).getCount() == 1) {
-            x = "Found Only " + get_search_item(q).getCount() + " Contact With '" + q + "' In It.";
-        } else {
-            x = "Found " + get_search_item(q).getCount() + " Contacts With '" + q + "' In It.";
-        }
-        Snackbar.make(id_recycleview, x, 3000).show();
-    }
-
-    public void searchaction_sqlite() {
-        fdb.setFirestoreSettings(settings);
-        search = findViewById(R.id.search);
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        /*StringRequest stringRequest = new StringRequest(Request.Method.GET, base_url + employee_url, new com.android.volley.Response.Listener<String>() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                if (query.equals("")) {
-                    db_recyclerview();
-                } else {
-                    db_recyclerview_query(query);
+            public void onResponse(String response) {
+                try {
+
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray array = jsonObject.getJSONArray()
+
+
+                } catch (JSONException x) {
+                    x.printStackTrace();
                 }
-                return false;
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });*/
+        GetDataService service = RetrofitClientInstance_localhost.getRetrofitInstance().create(GetDataService.class);
+        Call<List<employee_model>> call = service.getemployees();
+        call.enqueue(new Callback<List<employee_model>>() {
+            @Override
+            public void onResponse(Call<List<employee_model>> call, Response<List<employee_model>> response) {
+                progressDoalog.dismiss();
+                generateDataList(response.body());
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
-                if (newText.equals("")) {
-                    db_recyclerview();
-                } else {
-                    db_recyclerview_query(newText);
-                }
-                return false;
+            public void onFailure(Call<List<employee_model>> call, Throwable t) {
+                //progressDoalog.dismiss();
+                Toast.makeText(mcontext, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
-        db_recyclerview();
     }
 
-    private Cursor getallitems() {
-        return sqlite.query(sqlite_basecolumns.contacts.CONTACTS_TABLE_NAME,
-                null,
-                null,
-                null,
-                null,
-                null,
-                sqlite_basecolumns.contacts.client_name + " ASC"
-        );
+    private void x(){
+        GetDataService service = RetrofitClientInstance_localhost.getRetrofitInstance().create(GetDataService.class);
+        Call<List<employee_model>> call = service.getemployees();
+        call.enqueue(new Callback<List<employee_model>>() {
+            @Override
+            public void onResponse(Call<List<employee_model>> call, Response<List<employee_model>> response) {
+                progressDoalog.dismiss();
+                generateDataList(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<employee_model>> call, Throwable t) {
+                //progressDoalog.dismiss();
+                Toast.makeText(mcontext, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    private Cursor get_search_item(String q) {
-        String[] whereargs = {"%" + q + "%"};
-        return sqlite.query(sqlite_basecolumns.contacts.CONTACTS_TABLE_NAME + "",
-                null,
-                sqlite_basecolumns.contacts.client_name + " LIKE ?",
-                whereargs,
-                null,
-                null,
-                sqlite_basecolumns.contacts.client_name + " ASC"
-        );
+    private void generateDataList(List<employee_model> employee_list) {
+        adapter1 = new employeeAdapter(mcontext,employee_list);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mcontext);
+        id_recycleview.setLayoutManager(layoutManager);
+        id_recycleview.setAdapter(adapter1);
     }
+
+
 
     private void setupitems() {
         fab = findViewById(R.id.fab_main);

@@ -72,8 +72,6 @@ public class activity_gopro extends activity_main implements BillingProcessor.IB
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.analytics();
-        super.trace(trace);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gopro);
         super.menucreate();

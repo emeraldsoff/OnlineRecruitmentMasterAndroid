@@ -70,8 +70,7 @@ public class activity_diary_show_page extends activity_main {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.analytics();
-        super.trace(trace);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary_page_show);
         mcontext = this;

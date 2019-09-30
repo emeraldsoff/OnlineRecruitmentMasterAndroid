@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import androidx.annotation.NonNull;
-import inc.emeraldsoff.onlinerecruitmentmaster.appcontrol_ui.activity_entry;
+
 import inc.emeraldsoff.onlinerecruitmentmaster.login.activity_login;
 import inc.emeraldsoff.onlinerecruitmentmaster.login.activity_user_reg;
 import inc.emeraldsoff.onlinerecruitmentmaster.ui_data.fragment_Home.activity_home;
@@ -201,7 +201,6 @@ public class splash extends Activity {
     }
 
     public void check_auth() {
-//        if_restore_reqd();
         mAuth = FirebaseAuth.getInstance();
         userid = mAuth.getUid();
         mpref = getSharedPreferences("User", MODE_PRIVATE);
@@ -221,28 +220,9 @@ public class splash extends Activity {
                         try {
                             basic_check();
                         } catch (Exception e) {
-//                                    Crashlytics.getInstance();
-//                                    Crashlytics.log(e.getMessage());
+
                         }
                     } else {
-                        if (mpref.getBoolean("IF_SECURE", true)) {
-                            if (Objects.requireNonNull(mpref.getString("PIN", "")).isEmpty() ||
-                                    Objects.requireNonNull(mpref.getString("PIN", "")).equals("")) {
-                                startActivity(new Intent(splash.this, activity_home.class));
-                                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                                finish();
-                            } else {
-                                int SPLASH_DISPLAY_LENGTH = 3000;
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        startActivity(new Intent(splash.this, activity_entry.class));
-                                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                                        finish();
-                                    }
-                                }, SPLASH_DISPLAY_LENGTH);
-                            }
-                        } else {
                             int SPLASH_DISPLAY_LENGTH = 3000;
                             new Handler().postDelayed(new Runnable() {
                                 @Override
@@ -252,7 +232,6 @@ public class splash extends Activity {
                                     finish();
                                 }
                             }, SPLASH_DISPLAY_LENGTH);
-                        }
                     }
                 } else {
                     int SPLASH_DISPLAY_LENGTH = 3000;
@@ -435,7 +414,7 @@ public class splash extends Activity {
     private void saveFileToDrive() {
         // Start by creating a new contents, and setting a callback.
 //        Log.i(TAG, "Creating new contents.");
-        String db_path = DATABASE_EXTERNAL_PATH + File.separator + "megaprospects_backup";
+        String db_path = DATABASE_EXTERNAL_PATH + File.separator + "onlinerecruitmentmaster_backup";
         final File db = new File(db_path + ".zip");
 
     }
